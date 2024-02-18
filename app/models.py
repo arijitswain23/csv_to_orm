@@ -1,0 +1,41 @@
+from django.db import models
+
+# Create your models here.
+
+class Bank(models.Model):
+    bank_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.bank_name
+    
+
+class Branch(models.Model): 
+    bank_name=models.ForeignKey(Bank,on_delete=models.CASCADE,null=False)
+    ifsc = models.CharField(max_length=11, primary_key=True)
+    branch = models.CharField(max_length=74)
+    address = models.CharField(max_length=195)
+    contact=models.IntegerField()
+    city = models.CharField(max_length=50)
+    district = models.CharField(max_length=50)
+    state = models.CharField(max_length=26)
+
+    def __str__(self):
+        return self.ifsc
+
+class Business(models.Model):
+    Series_reference=models.CharField(max_length=100)
+    Period=models.DateField()
+    Data_value=models.BigIntegerField()
+    Suppressed=models.CharField(max_length=100)
+    STATUS=models.CharField(max_length=100)
+    UNITS=models.CharField(max_length=30)
+    Magnitude=models.IntegerField()
+    Subject=models.CharField(max_length=200)
+    Group=models.CharField(max_length=200)
+    Series_title_1=models.CharField(max_length=200)
+    Series_title_2=models.CharField(max_length=200)
+    Series_title_3=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.Series_reference
+
